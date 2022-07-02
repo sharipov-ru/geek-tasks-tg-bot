@@ -8,6 +8,8 @@ module Commands
 
     def execute
       run_command ? success : failure
+    rescue StandardError => e
+      failure
     end
 
     def run_command

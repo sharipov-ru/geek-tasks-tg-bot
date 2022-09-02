@@ -2,7 +2,7 @@ require './lib/success_result'
 require './lib/failure_result'
 
 module Commands
-  class BaseCommand
+  class BaseInputCommand
     attr_reader :input
 
     def initialize(input)

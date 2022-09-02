@@ -1,10 +1,10 @@
-require './lib/commands/base_command'
+require './lib/commands/base_input_command'
 require './lib/repositories/task_repository'
 require './lib/entities/task'
 require './lib/commands/helpers/uniq_token'
 
 module Commands
-  class AddInboxTask < BaseCommand
+  class AddInboxTask < BaseInputCommand
     SUCCESS_MESSAGE = 'Task has been added'.freeze
     FAILURE_MESSAGE = 'Error while adding a task'.freeze
 

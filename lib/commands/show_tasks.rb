@@ -1,8 +1,8 @@
-require './lib/commands/base_command'
+require './lib/commands/base_input_command'
 require './lib/repositories/task_repository'
 
 module Commands
-  class ShowTasks < BaseCommand
+  class ShowTasks < BaseInputCommand
     NO_TASKS_MESSAGE = 'No tasks exist'.freeze
     FAILURE_MESSAGE = 'Error while loading tasks'.freeze
 

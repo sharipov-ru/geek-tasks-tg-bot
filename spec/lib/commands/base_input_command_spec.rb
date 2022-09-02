@@ -1,6 +1,6 @@
-require './lib/commands/base_command'
+require './lib/commands/base_input_command'
 
-describe Commands::BaseCommand do
+describe Commands::BaseInputCommand do
   let(:command) { described_class.new(input) }
   let(:input) { double }
 

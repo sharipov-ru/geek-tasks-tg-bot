@@ -1,6 +1,6 @@
-require './lib/commands/base_command'
+require './lib/commands/base_input_command'
 
 module Commands
-  class Start < BaseCommand
+  class Start < BaseInputCommand
   end
 end

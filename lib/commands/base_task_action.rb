@@ -1,4 +1,4 @@
-require './lib/commands/base_command'
+require './lib/commands/base_input_command'
 
 module Commands
   # Base class to handle cli commands with task as an argument
@@ -7,7 +7,7 @@ module Commands
   # Example:
   #   * /rm id
   #   * /mvt id
-  class BaseTaskAction < BaseCommand
+  class BaseTaskAction < BaseInputCommand
     def action_name
       @action_name ||= input_text_parts.first
     end

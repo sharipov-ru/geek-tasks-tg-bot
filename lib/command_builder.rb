@@ -38,7 +38,12 @@ class CommandBuilder
     when /\/mvl [a-z]{2}/
       Commands::MoveTask.new(input, new_scope: 'later')
     else
-      Commands::AddInboxTask.new(input)
+      Commands::MultiCommand.new(
+        commands: [
+          Commands::AddInboxTask.new(input),
+          Commands::ShowInboxTasks.new('/inbox')
+        ]
+      )
     end
   end
 end

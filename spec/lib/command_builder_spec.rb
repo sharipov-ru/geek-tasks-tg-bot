@@ -1,5 +1,6 @@
 require './lib/command_builder'
 require './lib/input'
+require './lib/commands/multi_command'
 require './lib/commands/add_inbox_task'
 require './lib/commands/show_inbox_tasks'
 require './lib/commands/show_today_tasks'
@@ -18,7 +19,10 @@ describe CommandBuilder do
       let(:input) { Input.new(double(text: 'test')) }
 
       it 'creates add to inbox task command by default' do
-        expect(subject).to be_kind_of(Commands::AddInboxTask)
+        expect(subject).to be_kind_of(Commands::MultiCommand)
+        expect(subject.commands.size).to eq(2)
+        expect(subject.commands.first).to be_kind_of(Commands::AddInboxTask)
+        expect(subject.commands.last).to be_kind_of(Commands::ShowInboxTasks)
       end
     end
 

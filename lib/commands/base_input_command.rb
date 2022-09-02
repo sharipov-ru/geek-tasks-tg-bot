@@ -1,32 +1,11 @@
-require './lib/success_result'
-require './lib/failure_result'
+require './lib/commands/base_command'
 
 module Commands
-  class BaseInputCommand
+  class BaseInputCommand < BaseCommand
     attr_reader :input
 
     def initialize(input)
       @input = input
-    end
-
-    def execute
-      run_command ? success : failure
-    rescue StandardError => e
-      failure
-    end
-
-    def run_command
-      raise NotImplementedError
-    end
-
-    private
-
-    def success
-      raise NotImplementedError
-    end
-
-    def failure
-      raise NotImplementedError
     end
   end
 end

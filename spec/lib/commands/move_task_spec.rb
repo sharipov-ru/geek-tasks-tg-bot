@@ -1,7 +1,8 @@
 require './lib/commands/move_task'
 require './lib/input'
 require './lib/user'
-require './lib/result'
+require './lib/success_result'
+require './lib/failure_result'
 require './lib/repositories/task_repository'
 
 describe Commands::MoveTask do
@@ -20,9 +21,9 @@ describe Commands::MoveTask do
     context 'when success' do
       let(:run_command_result) { true }
 
-      it 'returns success Result' do
+      it 'returns success' do
         aggregate_failures do
-          expect(subject).to be_kind_of(Result)
+          expect(subject).to be_kind_of(SuccessResult)
           expect(subject.text).to eq('Task has been moved to week')
         end
       end
@@ -31,9 +32,9 @@ describe Commands::MoveTask do
     context 'when failure' do
       let(:run_command_result) { false }
 
-      it 'returns failure Result' do
+      it 'returns failure' do
         aggregate_failures do
-          expect(subject).to be_kind_of(Result)
+          expect(subject).to be_kind_of(FailureResult)
           expect(subject.text).to eq('Error while updating a task to week')
         end
       end

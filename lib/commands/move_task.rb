@@ -28,11 +28,11 @@ module Commands
     end
 
     def success
-      Result.new(text: "Task has been moved to #{new_scope}")
+      SuccessResult.new(text: "Task has been moved to #{new_scope}")
     end
 
     def failure
-      Result.new(text: "Error while updating a task to #{new_scope}")
+      FailureResult.new(text: "Error while updating a task to #{new_scope}")
     end
   end
 end

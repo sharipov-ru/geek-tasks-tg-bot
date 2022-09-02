@@ -1,7 +1,8 @@
 require './lib/commands/remove_task'
 require './lib/input'
 require './lib/user'
-require './lib/result'
+require './lib/success_result'
+require './lib/failure_result'
 require './lib/repositories/task_repository'
 
 describe Commands::RemoveTask do
@@ -19,9 +20,9 @@ describe Commands::RemoveTask do
     context 'when success' do
       let(:run_command_result) { true }
 
-      it 'returns success Result' do
+      it 'returns success' do
         aggregate_failures do
-          expect(subject).to be_kind_of(Result)
+          expect(subject).to be_kind_of(SuccessResult)
           expect(subject.text).to eq('Task hd has been removed')
         end
       end
@@ -30,9 +31,9 @@ describe Commands::RemoveTask do
     context 'when failure' do
       let(:run_command_result) { false }
 
-      it 'returns failure Result' do
+      it 'returns failure' do
         aggregate_failures do
-          expect(subject).to be_kind_of(Result)
+          expect(subject).to be_kind_of(FailureResult)
           expect(subject.text).to eq('Error while removing task hd')
         end
       end

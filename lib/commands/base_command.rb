@@ -1,3 +1,6 @@
+require './lib/success_result'
+require './lib/failure_result'
+
 module Commands
   class BaseCommand
     attr_reader :input

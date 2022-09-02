@@ -11,11 +11,11 @@ module Commands
     private
 
     def success
-      Result.new(text: "Task #{current_task_token} has been removed")
+      SuccessResult.new(text: "Task #{current_task_token} has been removed")
     end
 
     def failure
-      Result.new(text: "Error while removing task #{current_task_token}")
+      FailureResult.new(text: "Error while removing task #{current_task_token}")
     end
   end
 end

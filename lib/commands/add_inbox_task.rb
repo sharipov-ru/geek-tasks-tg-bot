@@ -2,7 +2,6 @@ require './lib/commands/base_command'
 require './lib/repositories/task_repository'
 require './lib/entities/task'
 require './lib/commands/helpers/uniq_token'
-require './lib/result'
 
 module Commands
   class AddInboxTask < BaseCommand
@@ -25,11 +24,11 @@ module Commands
     private
 
     def success
-      Result.new(text: SUCCESS_MESSAGE)
+      SuccessResult.new(text: SUCCESS_MESSAGE)
     end
 
     def failure
-      Result.new(text: FAILURE_MESSAGE)
+      FailureResult.new(text: FAILURE_MESSAGE)
     end
   end
 end

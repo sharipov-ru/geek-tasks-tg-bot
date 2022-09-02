@@ -1,7 +1,8 @@
 require './lib/commands/show_tasks'
 require './lib/input'
 require './lib/user'
-require './lib/result'
+require './lib/success_result'
+require './lib/failure_result'
 require './lib/repositories/task_repository'
 
 describe Commands::ShowTasks do
@@ -18,9 +19,9 @@ describe Commands::ShowTasks do
           expect(command).to receive(:fetch_tasks).and_return([])
         end
 
-        it 'returns success Result with empty tasks' do
+        it 'returns success with empty tasks' do
           aggregate_failures do
-            expect(subject).to be_kind_of(Result)
+            expect(subject).to be_kind_of(SuccessResult)
             expect(subject.text).to eq(described_class::NO_TASKS_MESSAGE)
           end
         end
@@ -39,9 +40,9 @@ describe Commands::ShowTasks do
           ]
         end
 
-        it 'returns success Result with empty tasks' do
+        it 'returns success with empty tasks' do
           aggregate_failures do
-            expect(subject).to be_kind_of(Result)
+            expect(subject).to be_kind_of(SuccessResult)
             expect(subject.text).to eq("aa. First\nbb. Second\ncc. Third")
           end
         end
@@ -53,9 +54,9 @@ describe Commands::ShowTasks do
         expect(command).to receive(:fetch_tasks).and_return(false)
       end
 
-      it 'returns failure Result' do
+      it 'returns failure' do
         aggregate_failures do
-          expect(subject).to be_kind_of(Result)
+          expect(subject).to be_kind_of(FailureResult)
           expect(subject.text).to eq(described_class::FAILURE_MESSAGE)
         end
       end

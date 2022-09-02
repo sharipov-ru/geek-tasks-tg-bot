@@ -1,6 +1,5 @@
 require './lib/commands/base_command'
 require './lib/repositories/task_repository'
-require './lib/result'
 
 module Commands
   class ShowTasks < BaseCommand
@@ -29,11 +28,11 @@ module Commands
           NO_TASKS_MESSAGE
         end
 
-      Result.new(text: text)
+      SuccessResult.new(text: text)
     end
 
     def failure
-      Result.new(text: FAILURE_MESSAGE)
+      FailureResult.new(text: FAILURE_MESSAGE)
     end
   end
 end

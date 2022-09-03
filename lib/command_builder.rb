@@ -41,7 +41,7 @@ class CommandBuilder
       Commands::MultiCommand.new(
         commands: [
           Commands::AddInboxTask.new(input),
-          Commands::ShowInboxTasks.new('/inbox')
+          Commands::ShowInboxTasks.new(input)
         ]
       )
     end

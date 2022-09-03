@@ -5,6 +5,7 @@ require './lib/commands/show_week_tasks'
 require './lib/commands/show_later_tasks'
 require './lib/commands/move_task'
 require './lib/commands/remove_task'
+require './lib/commands/multi_command'
 
 class CommandBuilder
   attr_reader :input

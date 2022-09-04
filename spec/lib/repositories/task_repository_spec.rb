@@ -227,4 +227,75 @@ describe Repositories::TaskRepository do
       end
     end
   end
+
+  describe '#bulk_remove' do
+    subject { repository.bulk_remove(tasks) }
+
+    before do
+      expect(datastore)
+        .to receive(:get)
+        .with('test-user-id-tasks')
+        .and_return(datastore_result)
+    end
+
+    context 'when selected single task exists in datastore' do
+      let(:tasks) do
+        [
+          Entities::Task.new(token: 'aa', text: 'text', scope: 'inbox')
+        ]
+      end
+
+      let(:datastore_result) do
+        [
+          { token: 'bb', text: 'Text', scope: 'inbox' },
+          { token: 'aa', text: 'Old text', scope: 'inbox' }
+        ].to_json
+      end
+
+      let(:datastore_push_result) { 'OK' }
+
+      it 'removes task' do
+        expect(datastore)
+          .to receive(:set)
+          .with(
+            'test-user-id-tasks',
+            '[{"token":"bb","text":"Text","scope":"inbox"}]'
+          )
+          .and_return(datastore_push_result)
+
+        subject
+      end
+    end
+
+    context 'when multiple single task exists in datastore' do
+      let(:tasks) do
+        [
+          Entities::Task.new(token: 'aa', text: 'text', scope: 'inbox'),
+          Entities::Task.new(token: 'bb', text: 'text', scope: 'inbox')
+        ]
+      end
+
+      let(:datastore_result) do
+        [
+          { token: 'bb', text: 'Text', scope: 'inbox' },
+          { token: 'cc', text: 'Text', scope: 'inbox' },
+          { token: 'aa', text: 'Old text', scope: 'inbox' }
+        ].to_json
+      end
+
+      let(:datastore_push_result) { 'OK' }
+
+      it 'removes task' do
+        expect(datastore)
+          .to receive(:set)
+          .with(
+            'test-user-id-tasks',
+            '[{"token":"cc","text":"Text","scope":"inbox"}]'
+          )
+          .and_return(datastore_push_result)
+
+        subject
+      end
+    end
+  end
 end

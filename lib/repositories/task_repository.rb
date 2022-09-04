@@ -69,6 +69,13 @@ module Repositories
       result == 'OK'
     end
 
+    def bulk_remove(tasks)
+      updated_tasks = all_task_records.reject { |task_record| tasks.map(&:token).include?(task_record['token']) }
+
+      result = datastore.set("#{user.id}-tasks", updated_tasks.to_json)
+      result == 'OK'
+    end
+
     private
 
     attr_reader :user, :datastore, :mapper

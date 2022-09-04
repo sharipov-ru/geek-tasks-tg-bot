@@ -1,21 +1,21 @@
-require './lib/commands/base_task_action'
+require './lib/commands/bulk_tasks_action'
 
 module Commands
-  class RemoveTask < BaseTaskAction
+  class RemoveTask < BulkTasksAction
     def run_command
-      return false unless current_task
+      return false unless current_tasks.any?
 
-      task_repo.remove(current_task)
+      task_repo.bulk_remove(current_tasks)
     end
 
     private
 
     def success
-      SuccessResult.new(text: "Task #{current_task_token} has been removed")
+      SuccessResult.new(text: "Tasks #{current_task_tokens} has been removed")
     end
 
     def failure
-      FailureResult.new(text: "Error while removing task #{current_task_token}")
+      FailureResult.new(text: "Error while removing tasks #{current_task_tokens}")
     end
   end
 end

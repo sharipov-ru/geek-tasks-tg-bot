@@ -23,7 +23,7 @@ describe Commands::RemoveTask do
       it 'returns success' do
         aggregate_failures do
           expect(subject).to be_kind_of(SuccessResult)
-          expect(subject.text).to eq('Task hd has been removed')
+          expect(subject.text).to eq('Tasks ["hd"] has been removed')
         end
       end
     end
@@ -34,7 +34,7 @@ describe Commands::RemoveTask do
       it 'returns failure' do
         aggregate_failures do
           expect(subject).to be_kind_of(FailureResult)
-          expect(subject.text).to eq('Error while removing task hd')
+          expect(subject.text).to eq('Error while removing tasks ["hd"]')
         end
       end
     end
@@ -84,8 +84,7 @@ describe Commands::RemoveTask do
 
       it 'pushes only remaining tasks to repository' do
         expect(task_repo)
-          .to receive(:remove)
-          .with(having_attributes(scope: 'inbox', token: 'hd', text: 'Second'))
+          .to receive(:bulk_remove)
           .and_return(true)
 
         subject

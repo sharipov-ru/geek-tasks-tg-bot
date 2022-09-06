@@ -30,4 +30,12 @@ describe Commands::BulkTasksAction do
       it { is_expected.to eq(%w[hd ab dc fg]) }
     end
   end
+
+  describe '#current_task_tokens_as_string' do
+    subject { command.current_task_tokens_as_string }
+
+    let(:text) { '/mvt hd ab dc fg' }
+
+    it { is_expected.to eq('hd ab dc fg') }
+  end
 end

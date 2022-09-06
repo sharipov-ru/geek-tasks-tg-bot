@@ -17,6 +17,10 @@ module Commands
       @current_task_tokens ||= input_text_parts[1..]
     end
 
+    def current_task_tokens_as_string
+      @current_task_tokens_as_string ||= current_task_tokens.join(' ')
+    end
+
     private
 
     def input_text_parts

@@ -11,11 +11,21 @@ module Commands
     private
 
     def success
-      SuccessResult.new(text: "Tasks #{current_task_tokens} has been removed")
+      text = "#{subject.capitalize} #{current_task_tokens_as_string} #{has} been removed"
+      SuccessResult.new(text: text)
     end
 
     def failure
-      FailureResult.new(text: "Error while removing tasks #{current_task_tokens}")
+      text = "Error while removing #{subject} #{current_task_tokens_as_string}"
+      FailureResult.new(text: text)
+    end
+
+    def subject
+      current_task_tokens.size > 1 ? 'tasks' : 'task'
+    end
+
+    def has
+      current_task_tokens.size > 1 ? 'have' : 'has'
     end
   end
 end

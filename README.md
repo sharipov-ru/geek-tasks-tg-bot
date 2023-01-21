@@ -41,3 +41,5 @@ To move Third task (with the `id = fg`) to the `/later` the following command ne
 docker build -t cmd-tasks-tg-bot  .
 docker run -d -e CMD_TASKS_TG_BOT_TOKEN=TOKEN_FROM_TELEGRAM -e CMD_TASKS_REDIS_URL=redis://:password@xxx.xxx.xxx.xxx:port/0 cmd-tasks-tg-bot
 ```
+
+Or use Ansible playbook: https://github.com/sharipov-ru/cmd-tasks-tg-bot-ansible

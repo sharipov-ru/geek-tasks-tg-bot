@@ -1,3 +1,5 @@
+require './lib/commands/start'
+require './lib/commands/stop'
 require './lib/commands/add_inbox_task'
 require './lib/commands/show_inbox_tasks'
 require './lib/commands/show_today_tasks'

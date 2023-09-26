@@ -8,6 +8,8 @@ require './lib/commands/show_week_tasks'
 require './lib/commands/show_later_tasks'
 require './lib/commands/remove_task'
 require './lib/commands/move_task'
+require './lib/commands/start'
+require './lib/commands/stop'
 
 describe CommandBuilder do
   let(:command_builder) { CommandBuilder.new(input) }
@@ -24,6 +26,18 @@ describe CommandBuilder do
         expect(subject.commands.first).to be_kind_of(Commands::AddInboxTask)
         expect(subject.commands.last).to be_kind_of(Commands::ShowInboxTasks)
       end
+    end
+
+    context 'when command is /start' do
+      let(:input) { Input.new(double(text: '/start')) }
+
+      it { is_expected.to be_kind_of(Commands::Start) }
+    end
+
+    context 'when command is /stop' do
+      let(:input) { Input.new(double(text: '/stop')) }
+
+      it { is_expected.to be_kind_of(Commands::Stop) }
     end
 
     context 'when command is /inbox' do

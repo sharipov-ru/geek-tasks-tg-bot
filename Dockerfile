@@ -6,6 +6,9 @@ WORKDIR /cmd-tasks-tg-bot
 
 COPY . /cmd-tasks-tg-bot
 
+RUN gem update --system
+RUN gem install bundler:2.5.11
+
 RUN bundle config --global frozen 1
 RUN bundle install
 

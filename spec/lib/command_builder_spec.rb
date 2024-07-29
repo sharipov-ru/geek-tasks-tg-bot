@@ -67,7 +67,12 @@ describe CommandBuilder do
     context 'when command matches to remove' do
       let(:input) { Input.new(double(text: '/rm sx')) }
 
-      it { is_expected.to be_kind_of(Commands::RemoveTask) }
+      it 'creates multi command to /rm task, then show an /inbox' do
+        expect(subject).to be_kind_of(Commands::MultiCommand)
+        expect(subject.commands.size).to eq(2)
+        expect(subject.commands.first).to be_kind_of(Commands::RemoveTask)
+        expect(subject.commands.last).to be_kind_of(Commands::ShowInboxTasks)
+      end
     end
 
     context 'when command matches to move task to inbox' do

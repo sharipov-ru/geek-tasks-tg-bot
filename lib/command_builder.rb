@@ -31,7 +31,12 @@ class CommandBuilder
     when '/later'
       Commands::ShowLaterTasks.new(input)
     when /\/rm [a-z]{2}/
-      Commands::RemoveTask.new(input)
+      Commands::MultiCommand.new(
+        commands: [
+          Commands::RemoveTask.new(input),
+          Commands::ShowInboxTasks.new(input)
+        ]
+      )
     when /\/mvi [a-z]{2}/
       Commands::MoveTask.new(input, new_scope: 'inbox')
     when /\/mvt [a-z]{2}/

@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'redis', '~> 5.2.0'
+gem 'redis', '~> 5.3.0'
 gem 'telegram-bot-ruby', '~> 0.23.0'
 
 group :test do
